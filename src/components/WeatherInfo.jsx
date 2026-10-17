@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { capitalizeFirst } from "../utils/countryUtils";
+import Icon from "./Icon";
 
 /**
  * Muestra el clima actual. Solo presenta datos: no hace fetch ni maneja estado.
@@ -8,13 +9,47 @@ import { capitalizeFirst } from "../utils/countryUtils";
  * @param {number} humidity    Humedad en %
  * @param {number} windSpeed   Velocidad del viento en m/s
  */
-export default function WeatherInfo({ temperature, condition, humidity, windSpeed }) {
+export default function WeatherInfo({
+  temperature,
+  condition,
+  humidity,
+  windSpeed,
+}) {
   return (
     <dl className="weather">
-      <div className="weather__item"><dt>Temperatura</dt><dd>{Math.round(temperature)} °C</dd></div>
-      <div className="weather__item"><dt>Estado</dt><dd>{capitalizeFirst(condition)}</dd></div>
-      <div className="weather__item"><dt>Humedad</dt><dd>{humidity} %</dd></div>
-      <div className="weather__item"><dt>Viento</dt><dd>{windSpeed} m/s</dd></div>
+      <div className="weather__item">
+        <dt>
+          <Icon name="sun" /> Temperatura
+        </dt>
+        <dd>
+          {Math.round(temperature)}
+          <span> °C</span>
+        </dd>
+      </div>
+      <div className="weather__item">
+        <dt>
+          <Icon name="cloud" /> Estado del cielo
+        </dt>
+        <dd>{capitalizeFirst(condition)}</dd>
+      </div>
+      <div className="weather__item">
+        <dt>
+          <Icon name="drop" /> Humedad
+        </dt>
+        <dd>
+          {humidity}
+          <span> %</span>
+        </dd>
+      </div>
+      <div className="weather__item">
+        <dt>
+          <Icon name="wind" /> Viento
+        </dt>
+        <dd>
+          {windSpeed}
+          <span> m/s</span>
+        </dd>
+      </div>
     </dl>
   );
 }
